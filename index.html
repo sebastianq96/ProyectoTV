@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Video interactivo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body onLoad="initPlayer()">
+    <section class="header">
+        <nav role="navigation" class="nav">
+            <div id="menuToggle">
+                <input id="toggle" type="checkbox" onclick="checkFunction()" />
+
+                <span></span>
+                <span id="bar2"></span>
+
+                <ul id="menu">
+                    <a id="container" class="activate" onclick="contenedor()">
+                        <li>CONTENEDORES</li>
+                    </a>
+                    <a id="point" onclick="puntajes()">
+                        <li>PUNTAJES</li>
+                    </a>
+                    <a>
+                        <li>CREDITOS</li>
+                    </a>
+                </ul>
+
+                <div id="menu-right">
+                    <div id="o-point"></div>
+                    <div class="o-container" id="o-container">
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/container.png">
+                            <h1 id="o-title">Flat rack</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/dryvan.png">
+                            <h1 id="o-title">Dry Van</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/reefer.png">
+                            <h1 id="o-title">Reefer</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/opentop.png">
+                            <h1 id="o-title">Open Top</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/openside.png">
+                            <h1 id="o-title">Open Side</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/cisterna.png">
+                            <h1 id="o-title"> Contenedor cisterna</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img id="o-image" src="resources/images/flexi-tank.png">
+                            <h1 id="o-title">Flexi-Tank</h1>
+                            <h2 id="o-title-description">Descripción</h2>
+                            <p id="o-description"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book. It has survived not only five centuries, but also the leap into electronic
+                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                                release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        </div>
+
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </nav>
+    </section>
+
+    <section class="video" style="width: 100%; display:flex; margin-top: -12em">
+        <video id="myvideo" width="100%">
+            <source src="resources/images/video1.mp4" type="video/mp4">
+        </video>
+
+        <div id="o-content-random">
+            <div onclick="fullcontainer()" id="o-image-random"></div>
+            <div class="bar-container">
+                <div id="bar" class="progressBar">
+                    <div id="bar-increment" class="progressValue">
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+
+    <script type="text/javascript" src="resources/app/main.js"></script>
+</body>
+
+</html>
