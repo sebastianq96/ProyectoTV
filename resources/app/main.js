@@ -129,15 +129,31 @@ function initPlayer() {
         var posx = (Math.random() * (1080 - divsize)).toFixed();
         var posy = (Math.random() * (400 - divsize)).toFixed();
         var bar = document.getElementById("bar");
-
-
-        var image = document.getElementById("o-image-random");
         bar.style.display = "block";
+      
+        var image = document.getElementById("o-content-random");
+        
+        /*
         image.style.display = "block";
         image.style.left = posx + "px";
-        image.style.top = posy + "px";
+        image.style.top = posy + "px";*/
 
-        image.onclick = function () {
+        var slider = document.getElementById("myRange");
+        slider.style.display="block";
+  
+        slider.oninput = function() {
+          var bar2 = document.getElementById("bar-increment");
+          progres=slider.value;
+          bar2.style.width = progres + "%";
+
+          if(progres==60){
+            image.style.display = "none";
+            video.currentTime = 41;
+            vid.play();
+          }
+        }
+
+       /* image.onclick = function () {
           image.style.display = "none";
           contador++;
           progres += 20;
@@ -163,11 +179,8 @@ function initPlayer() {
             video.currentTime = 41;
             vid.play();
           }
-
-
-        }
+        }*/
       }
-
 
       //--------------------------------------------Cambio contenedor-------------------------------------------------------------------
 
