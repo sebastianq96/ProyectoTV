@@ -1,6 +1,8 @@
 var vid = document.getElementById("myvideo");
 var contador = 0;
 var progres = 0;
+var tempslider = 0;
+
 
 //_----------------------------------------------------Contenedores----------------------------------------------------------------------
 var slideIndex = 1;
@@ -73,7 +75,7 @@ function pauseVid() {
 function checkFunction() {
   if (document.getElementById("toggle").checked) {
     vid.pause();
-    
+
 
   } else {
     vid.play();
@@ -119,182 +121,85 @@ function initPlayer() {
       }
     }
 
-    if (parseInt(player.currentTime) >= 34) {
+    if (parseInt(player.currentTime) >= 23) {
       if (player.videoPlaying === 1) {
-        console.log("entre x2");
-        player.videoPlaying = 2;
-        vid.pause();
+        video.currentTime = 22;
 
-        var divsize = (100).toFixed();
-        var posx = (Math.random() * (1080 - divsize)).toFixed();
-        var posy = (Math.random() * (400 - divsize)).toFixed();
-        var bar = document.getElementById("bar");
-        bar.style.display = "block";
-      
-        var image = document.getElementById("o-content-random");
-        
-        /*
-        image.style.display = "block";
-        image.style.left = posx + "px";
-        image.style.top = posy + "px";*/
-
-        var slider = document.getElementById("myRange");
-        slider.style.display="block";
-  
-        slider.oninput = function() {
-          var bar2 = document.getElementById("bar-increment");
-          progres=slider.value;
-          bar2.style.width = progres + "%";
-
-          if(progres==60){
-            image.style.display = "none";
-            video.currentTime = 41;
-            vid.play();
-          }
-        }
-
-       /* image.onclick = function () {
-          image.style.display = "none";
-          contador++;
-          progres += 20;
-          console.log(progres);
-
-          var divsize = (100).toFixed();
-          var posx = (Math.random() * (1080 - divsize)).toFixed();
-          var posy = (Math.random() * (400 - divsize)).toFixed();
-
-
-          var image2 = document.getElementById("o-image-random");
-          image2.style.display = "block";
-          image2.style.left = posx + "px";
-          image2.style.top = posy + "px";
-
-          var bar2 = document.getElementById("bar-increment");
-          bar2.style.width = progres + "%";
-
-
-
-          if (contador == 5) {
-            image2.style.display = "none";
-            video.currentTime = 41;
-            vid.play();
-          }
-        }*/
-      }
-
-      //--------------------------------------------Cambio contenedor-------------------------------------------------------------------
-
-      document.onkeydown = function () {
-        var tecla = String.fromCharCode(event.keyCode);
-        console.log(tecla);
-        if (tecla === 'S') {
-          video.play();
-        }
-      }
-
-
-
-      if (player.currentTime >= 60) {
-
-        // Repeticion del Video
-        if (player.currentTime >= 360) {
-          video.currentTime = 120;
-        }
-
-
-        if (player.videoPlaying === 0) {
-          //Botones del Video
-          //seleccion para ir al video 1
-          console.log("LLEGUE");
-          player.videoPlaying = -1;
-          var btn_partes = document.createElement("BUTTON");
-          btn_partes.innerHTML = "opción 1";
-
-          btn_partes.onclick = function () {
-            player.videoPlaying = 1;
-            video.src = "resources/images/video2.mp4";
-            video.play();
-            document.body.removeChild(btn_partes);
-            document.body.removeChild(btn_ritmos);
-
-          };
-          //determino posicion para el boton
-          btn_partes.className = "button";
-          document.body.appendChild(btn_partes);
-
-          //seleccion para ir al video 2
-          var btn_ritmos = document.createElement("BUTTON");
-          btn_ritmos.innerHTML = "opción 2";
-          player.videoPlaying = -1;
-          btn_ritmos.onclick = function () {
-            player.videoPlaying = 1;
-            video.src = "VIDEOS/ritmos(2).mp4";
-            video.play();
-            document.body.removeChild(btn_partes);
-            document.body.removeChild(btn_ritmos);
-
-          };
-
-          //determino posicion para el boton
-          btn_ritmos.className = "button2"
-          document.body.appendChild(btn_ritmos);
-        }
-      }
-
-      if (player.videoPlaying === 1 && player.currentTime >= 10) {
-        // Repeticion del Video
-        if (player.currentTime >= 20) {
-          video.currentTime = 5;
-        }
-
-        var btn_loop = document.createElement("BUTTON");
-        btn_loop.innerHTML = "videoLoop";
-        player.videoPlaying = -1;
-
-
-        var presion = 0;
+        //---------------------------------------------------- Aqui va sensor RFID----------------------------------------------------------
         document.onkeydown = function () {
-          presion++;
-          console.log(presion);
-          var img = document.createElement("img");
-          if (presion >= 50 && presion <= 80) {
-            console.log("puse la imagen");
+          var tecla2 = String.fromCharCode(event.keyCode);
+          console.log(tecla2);
+          if (tecla2 === 'E') {
+            console.log("me llegue");
+            video.currentTime = 24;
+            player.videoPlaying = 2;
+          }
+        }
+      }
+    }
 
-            img.src = "resources/images/source.gif";
-            document.body.appendChild(img);
+    //------------------------------------------------------- Interacción con slider---------------------------------------------------------
+    if (parseInt(player.currentTime) >= 35) {
+      if (player.videoPlaying === 2) {
+        console.log("entre x2");
+        var bar = document.getElementById("bar");
+        var slider = document.getElementById("myRange");
+        var btn_continuar = document.getElementById("btn-continuar");
+        var peso = progres * 342.5 ;
+        document.getElementById("peso").innerHTML = "Peso: " + peso + " kg";
 
-            if (presion == 80) {
-              player.videoPlaying = 0;
-              video.src = "resources/images/video.mp4";
-              video.play();
-              document.body.removeChild(img);
+        if (parseInt(player.currentTime) === 41) {
+          vid.pause();
+          bar.style.display = "block";
+          slider.style.display = "block";
+          btn_continuar.style.display = "block";
 
+          btn_continuar.onclick = function () {
+            if (peso === 27400) {
+              video.currentTime = 42;
+              player.videoPlaying = 3;
+              vid.play();
+              bar.style.display = "none";
+              slider.style.display = "none";
+              btn_continuar.style.display = "none";
+            } else {
+              //falta video para decir que puede llenar mas xD
+              console.log("Te falta producto pendejo");
+            }
+          };
+
+          slider.oninput = function () {
+            var bar2 = document.getElementById("bar-increment");
+            progres = slider.value;
+           
+           
+            tempslider = slider.defaultValue;
+            bar2.style.width = progres + "%";
+            console.log("original " + progres);
+            slider.defaultValue = progres;
+
+            if (progres > tempslider) {
+              video.currentTime = 95;
+              vid.play();
+            }
+
+            if (progres < tempslider) {
+              video.currentTime = 98;
+              vid.play();
             }
           }
         }
 
-        //determino posicion para el boton
-        btn_loop.className = "button"
-        document.body.appendChild(btn_loop);
+        if (parseInt(player.currentTime) === 96) {
+          video.currentTime = 41;
+        }
 
-        var btn_loop2 = document.createElement("BUTTON");
-        btn_loop2.innerHTML = "videoLoop2";
-        player.videoPlaying = -1;
-
-
-        btn_loop2.onclick = function () {
-          player.videoPlaying = 2;
-          video.src = "VIDEOS/videoLoop.mp4";
-          video.play();
-          btn_loop2.body.removeChild(btn_loop2);
-        };
-        //determino posicion para el boton
-        btn_loop2.className = "button2"
-        document.body.appendChild(btn_loop2);
-
-
+        if (parseInt(player.currentTime) === 100) {
+          video.currentTime = 41;
+        }
       }
     };
+    //--------------------------------------------------Ultima interacción---------------------------------------------------------
   }
 }
 
