@@ -1,4 +1,6 @@
 var vid = document.getElementById("myvideo");
+var audio = document.getElementById("myaudio");
+audio.volume = 0.2;
 var contador = 0;
 var progres = 0;
 var tempslider = 0;
@@ -64,21 +66,20 @@ function contenedor() {
 
 //-------------------------------------Menu de pausa-------------------------------------------------------------
 function playVid() {
-  vid.play();
+  vid.play(); 
 }
 
 function pauseVid() {
   vid.pause();
 }
 
-
 function checkFunction() {
   if (document.getElementById("toggle").checked) {
     vid.pause();
-
-
+    audio.pause();
   } else {
     vid.play();
+    audio.play();
   }
 }
 
@@ -153,6 +154,9 @@ function initPlayer() {
           bar.style.display = "block";
           slider.style.display = "block";
           btn_continuar.style.display = "block";
+          btn_continuar.style.animation="fadeIn 2s;";
+          bar.style.animation="fadeIn 2s;";
+          slider.style.animation="fadeIn 2s;";
 
           btn_continuar.onclick = function () {
             if (peso === 27400) {
