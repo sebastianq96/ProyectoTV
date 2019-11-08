@@ -66,7 +66,7 @@ function contenedor() {
 
 //-------------------------------------Menu de pausa-------------------------------------------------------------
 function playVid() {
-  vid.play(); 
+  vid.play();
 }
 
 function pauseVid() {
@@ -109,13 +109,11 @@ function initPlayer() {
     if (parseInt(player.currentTime) >= 7) {
       if (player.videoPlaying === 0) {
         player.videoPlaying = 1;
-        console.log("entre");
         var btn_camion = document.createElement("BUTTON");
         btn_camion.className = "button-camion";
 
         btn_camion.onclick = function () {
           video.currentTime = 12;
-          console.log(player.videoPlaying);
           document.body.removeChild(btn_camion);
         };
         document.body.appendChild(btn_camion);
@@ -129,9 +127,7 @@ function initPlayer() {
         //---------------------------------------------------- Aqui va sensor RFID----------------------------------------------------------
         document.onkeydown = function () {
           var tecla2 = String.fromCharCode(event.keyCode);
-          console.log(tecla2);
           if (tecla2 === 'E') {
-            console.log("me llegue");
             video.currentTime = 24;
             player.videoPlaying = 2;
           }
@@ -142,11 +138,10 @@ function initPlayer() {
     //------------------------------------------------------- Interacción con slider---------------------------------------------------------
     if (parseInt(player.currentTime) >= 35) {
       if (player.videoPlaying === 2) {
-        console.log("entre x2");
         var bar = document.getElementById("bar");
         var slider = document.getElementById("myRange");
         var btn_continuar = document.getElementById("btn-continuar");
-        var peso = progres * 342.5 ;
+        var peso = progres * 342.5;
         document.getElementById("peso").innerHTML = "Peso: " + peso + " kg";
 
         if (parseInt(player.currentTime) === 41) {
@@ -154,9 +149,9 @@ function initPlayer() {
           bar.style.display = "block";
           slider.style.display = "block";
           btn_continuar.style.display = "block";
-          btn_continuar.style.animation="fadeIn 2s;";
-          bar.style.animation="fadeIn 2s;";
-          slider.style.animation="fadeIn 2s;";
+          btn_continuar.style.animation = "fadeIn 2s;";
+          bar.style.animation = "fadeIn 2s;";
+          slider.style.animation = "fadeIn 2s;";
 
           btn_continuar.onclick = function () {
             if (peso === 27400) {
@@ -168,18 +163,17 @@ function initPlayer() {
               btn_continuar.style.display = "none";
             } else {
               //falta video para decir que puede llenar mas xD
-              console.log("Te falta producto pendejo");
+              
             }
           };
 
           slider.oninput = function () {
             var bar2 = document.getElementById("bar-increment");
             progres = slider.value;
-           
-           
+
+
             tempslider = slider.defaultValue;
             bar2.style.width = progres + "%";
-            console.log("original " + progres);
             slider.defaultValue = progres;
 
             if (progres > tempslider) {
@@ -204,8 +198,42 @@ function initPlayer() {
       }
     };
     //--------------------------------------------------Ultima interacción---------------------------------------------------------
+    if (parseInt(player.currentTime) >= 71) {
+      
+        if (player.videoPlaying === 3) {
+          video.currentTime = 64;
+
+          document.onkeydown = function () {
+            var tecla2 = String.fromCharCode(event.keyCode);
+
+            if (tecla2 === 'A') {
+              video.currentTime = 73;//tunel bueno
+              player.videoPlaying = 4;
+            }
+            if (tecla2 === 'B') {
+              video.currentTime = 102;
+              player.videoPlaying = -3;
+              
+            }
+
+            if (tecla2 === 'C') {
+              video.currentTime = 102;
+              player.videoPlaying = -3;
+              
+            }
+          }
+        }
+    }
+
+    if (parseInt(player.currentTime) >= 92 && player.videoPlaying==4 ) {
+      vid.pause();
+    }
+
+    if(parseInt(player.currentTime) >= 118 && player.videoPlaying==-3 ) {
+      video.currentTime = 71;
+      player.videoPlaying = 3;
+    }
   }
 }
-
 
 
