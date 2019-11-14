@@ -363,7 +363,8 @@ function initPlayer() {
     //--------------------------------------------------Ultima interacción---------------------------------------------------------
 
     if (parseInt(player.currentTime) >= 71) {
-
+      var marginvideo=document.getElementById("video");
+      marginvideo.style.marginTop="-9em";
       if (player.videoPlaying === 3) {
         video.currentTime = 64;
 
@@ -390,7 +391,7 @@ function initPlayer() {
         }
 
         if (number == 2) {
-          if (data == 'd') {
+          if (data == 'a') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
             data = "";
@@ -403,7 +404,7 @@ function initPlayer() {
 
           }
 
-          if (data === 'a') {
+          if (data === 'd') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
@@ -456,7 +457,7 @@ function initPlayer() {
         }
 
         if (number == 5) {
-          if (data == 's') {
+          if (data == 'a') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
             data = "";
@@ -469,7 +470,7 @@ function initPlayer() {
 
           }
 
-          if (data === 'a') {
+          if (data === 's') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
@@ -478,7 +479,7 @@ function initPlayer() {
         }
 
         if (number == 6) {
-          if (data == 's') {
+          if (data == 'a') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
             data = "";
@@ -491,7 +492,7 @@ function initPlayer() {
 
           }
 
-          if (data === 'a') {
+          if (data === 's') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
