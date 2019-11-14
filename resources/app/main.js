@@ -10,9 +10,11 @@ audio.volume = 0.2;
 var contador = 0;
 var progres = 0;
 var tempslider = 0;
-var points=0;
+var points = 0;
 var number = Math.floor(Math.random() * 3) + 1;
-var data;
+var data = "";
+var pesoContenedorMax = 0;
+var pesoContenedorMin = 0;
 
 function setup() {
   // Crea un objeto del tipo SerialPort
@@ -33,7 +35,7 @@ function portList(ports) {
   console.log('Listado de puertos seriales:');
   // recorre el listado de puertos seriales y los muestra por consola
   for (var i = 0; i < ports.length; i++) {
-      console.log(ports[i]);
+    console.log(ports[i]);
   }
 }
 
@@ -90,25 +92,25 @@ function puntajes() {
 }
 
 
-          document.onkeydown = function () {
-            var tecla2 = String.fromCharCode(event.keyCode);
+document.onkeydown = function () {
+  var tecla2 = String.fromCharCode(event.keyCode);
 
-            if (tecla2 === 'A') {
-              video.currentTime = 73;//tunel bueno
-              player.videoPlaying = 4;
-            }
-            if (tecla2 === 'B') {
-              video.currentTime = 102;
-              player.videoPlaying = -3;
-              
-            }
+  if (tecla2 === 'A') {
+    video.currentTime = 73;//tunel bueno
+    player.videoPlaying = 4;
+  }
+  if (tecla2 === 'B') {
+    video.currentTime = 102;
+    player.videoPlaying = -3;
 
-            if (tecla2 === 'C') {
-              video.currentTime = 102;
-              player.videoPlaying = -3;
-              
-            }
-          }
+  }
+
+  if (tecla2 === 'C') {
+    video.currentTime = 102;
+    player.videoPlaying = -3;
+
+  }
+}
 
 
 //---------------------------------------------Contenedores---------------------------------------------------
@@ -154,14 +156,14 @@ var player = {
 };
 
 function initPlayer() {
-  
- //---------------------------------------Selección aleatoria del video
-    var selection=document.getElementById("myvideo");
-    console.log(number);
 
-    selection.innerHTML="<source src='resources/images/video"+number+".mp4' type='video/mp4'>"; 
-    
-  
+  //---------------------------------------Selección aleatoria del video
+  var selection = document.getElementById("myvideo");
+  console.log(number);
+
+  selection.innerHTML = "<source src='resources/images/video" + number + ".mp4' type='video/mp4'>";
+
+
   "use strict";
   video = document.querySelector("video");
   console.log(video);
@@ -197,12 +199,12 @@ function initPlayer() {
 
 
         //---------------------------------------------------- Aqui va sensor RFID----------------------------------------------------------
-   console.log("dsadasdsdasdasdadasd "+data);
-          if (number===parseInt(data)) {
-            video.currentTime = 24;
-            player.videoPlaying = 2;
-          }
-        
+        console.log("dsadasdsdasdasdadasd " + data);
+        if (number === parseInt(data)) {
+          video.currentTime = 24;
+          player.videoPlaying = 2;
+        }
+
       }
     }
 
@@ -241,11 +243,24 @@ function initPlayer() {
           btn_continuar.style.animation = "fadeIn 2s;";
           bar.style.animation = "fadeIn 2s;";
           slider.style.animation = "fadeIn 2s;";
+          if (number == 1) {
+            pesoContenedorMax = 27400;
+            pesoContenedorMin = 26000;
+          }
+
+          if (number == 2) {
+            pesoContenedorMax = 14385;
+            pesoContenedorMin = 13357;
+          }
+
+          if (number == 3) {
+            pesoContenedorMax = 30825;
+            pesoContenedorMin = 29797;
+          }
 
           btn_continuar.onclick = function () {
-            console.log("continua");
-           // if (peso === 27400) {
-            if (peso >= 26000 && peso <=27400) {
+
+            if (peso >= pesoContenedorMin && peso <= pesoContenedorMax) {
 
               video.currentTime = 42;
               player.videoPlaying = 3;
@@ -253,107 +268,70 @@ function initPlayer() {
               bar.style.display = "none";
               slider.style.display = "none";
               btn_continuar.style.display = "none";
+              btnSi.style.display = "none";
+              modal.style.display = "none";
+              modal2.style.display = "none";
+              btnSi.style.display = "none";
 
-            } 
+            }
 
-            if (peso < 26000){
+            if (peso < pesoContenedorMin) {
               modal.style.display = "block";
               //mensaje.textContent  = "Estas despediciando espacio";
               btnSi.style.display = "block";
               bar.style.display = "none";
               slider.style.display = "none";
               btn_continuar.style.display = "none";
-           
-              btnSi.onclick = function() {
-                  //mensaje.textContent  = "se elimino correctamente";
-                  btnSi.style.display = "none";
-                  modal.style.display = "none";
-
-                  bar.style.display = "block";
-                  slider.style.display = "block";
-                  btn_continuar.style.display = "block";
-                  btn_continuar.style.animation="fadeIn 2s;";
-                  bar.style.animation="fadeIn 2s;";
-                  slider.style.animation="fadeIn 2s;";
-              }
-
-              // When the user clicks on <span> (x), close the modal
-              span.onclick = function() {
-                  //mensaje.textContent  = "se elimino correctamente";
-                  btnSi.style.display = "none";
-                  modal.style.display = "none";
-
-                  bar.style.display = "block";
-                  slider.style.display = "block";
-                  btn_continuar.style.display = "block";
-                  btn_continuar.style.animation="fadeIn 2s;";
-                  bar.style.animation="fadeIn 2s;";
-                  slider.style.animation="fadeIn 2s;";
-              }
-
-              // When the user clicks anywhere outside of the modal, close it
-              window.onclick = function(event) {
-                  if (event.target == modal) {
-                    btnSi.style.display = "none";
-                    modal.style.display = "none";
-  
-                    bar.style.display = "block";
-                    slider.style.display = "block";
-                    btn_continuar.style.display = "block";
-                    btn_continuar.style.animation="fadeIn 2s;";
-                    bar.style.animation="fadeIn 2s;";
-                    slider.style.animation="fadeIn 2s;";
-                  }
-              }
-            } 
-            if (peso > 27400){
+            }
+            if (peso > pesoContenedorMax) {
               modal2.style.display = "block";
               //mensaje.textContent  = "Estas despediciando espacio";
               btnSi.style.display = "block";
               bar.style.display = "none";
               slider.style.display = "none";
               btn_continuar.style.display = "none";
-           
-              btnSi2.onclick = function() {
-                  //mensaje.textContent  = "se elimino correctamente";
-                  btnSi2.style.display = "none";
-                  modal2.style.display = "none";
 
-                  bar.style.display = "block";
-                  slider.style.display = "block";
-                  btn_continuar.style.display = "block";
-                  btn_continuar.style.animation="fadeIn 2s;";
-                  bar.style.animation="fadeIn 2s;";
-                  slider.style.animation="fadeIn 2s;";
-              }
+            }
 
-              // When the user clicks on <span> (x), close the modal
-              span.onclick = function() {
-                  //mensaje.textContent  = "se elimino correctamente";
-                  btnSi2.style.display = "none";
-                  modal2.style.display = "none";
+            btnSi.onclick = function () {
+              //mensaje.textContent  = "se elimino correctamente";
+              btnSi.style.display = "none";
+              modal.style.display = "none";
 
-                  bar.style.display = "block";
-                  slider.style.display = "block";
-                  btn_continuar.style.display = "block";
-                  btn_continuar.style.animation="fadeIn 2s;";
-                  bar.style.animation="fadeIn 2s;";
-                  slider.style.animation="fadeIn 2s;";
-              }
+              bar.style.display = "block";
+              slider.style.display = "block";
+              btn_continuar.style.display = "block";
+              btn_continuar.style.animation = "fadeIn 2s;";
+              bar.style.animation = "fadeIn 2s;";
+              slider.style.animation = "fadeIn 2s;";
+            }
 
-              // When the user clicks anywhere outside of the modal, close it
-              window.onclick = function(event) {
-                  if (event.target == modal) {
-                    btnSi.style.display = "none";
-                    modal2.style.display = "none";
-  
-                    bar.style.display = "block";
-                    slider.style.display = "block";
-                    btn_continuar.style.display = "block";
-                    btn_continuar.style.animation="fadeIn 2s;";
-                    bar.style.animation="fadeIn 2s;";
-                    slider.style.animation="fadeIn 2s;";
-                  }
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+              //mensaje.textContent  = "se elimino correctamente";
+              btnSi.style.display = "none";
+              modal.style.display = "none";
+
+              bar.style.display = "block";
+              slider.style.display = "block";
+              btn_continuar.style.display = "block";
+              btn_continuar.style.animation = "fadeIn 2s;";
+              bar.style.animation = "fadeIn 2s;";
+              slider.style.animation = "fadeIn 2s;";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+              if (event.target == modal) {
+                btnSi.style.display = "none";
+                modal.style.display = "none";
+
+                bar.style.display = "block";
+                slider.style.display = "block";
+                btn_continuar.style.display = "block";
+                btn_continuar.style.animation = "fadeIn 2s;";
+                bar.style.animation = "fadeIn 2s;";
+                slider.style.animation = "fadeIn 2s;";
               }
             }
           };
@@ -391,37 +369,84 @@ function initPlayer() {
     //--------------------------------------------------Ultima interacción---------------------------------------------------------
 
     if (parseInt(player.currentTime) >= 71) {
-      
-        if (player.videoPlaying === 3) {
-          video.currentTime = 64;
 
-          document.onkeydown = function () {
-            var tecla2 = String.fromCharCode(event.keyCode);
+      if (player.videoPlaying === 3) {
+        video.currentTime = 64;
 
-            if (tecla2 === 'A') {
-              video.currentTime = 73;//tunel bueno
-              player.videoPlaying = 4;
-            }
-            if (tecla2 === 'B') {
-              video.currentTime = 102;
-              player.videoPlaying = -3;
-              
-            }
+        if (number == 1) {
+          if (data == "A") {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
 
-            if (tecla2 === 'C') {
-              video.currentTime = 102;
-              player.videoPlaying = -3;
-              
-            }
+          if (data === 'S') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'D') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
           }
         }
+
+        if (number == 2) {
+          if (data == "D") {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'S') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'A') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 3) {
+          if (data == "S") {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'D') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'A') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+      }
     }
 
-    if (parseInt(player.currentTime) >= 92 && player.videoPlaying==4 ) {
+    if (parseInt(player.currentTime) >= 92 && player.videoPlaying == 4) {
       vid.pause();
     }
 
-    if(parseInt(player.currentTime) >= 118 && player.videoPlaying==-3 ) {
+    if (parseInt(player.currentTime) >= 118 && player.videoPlaying == -3) {
       video.currentTime = 71;
       player.videoPlaying = 3;
     }
