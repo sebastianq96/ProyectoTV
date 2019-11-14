@@ -11,7 +11,7 @@ var contador = 0;
 var progres = 0;
 var tempslider = 0;
 var points = 0;
-var number = Math.floor(Math.random() * 3) + 1;
+var number = Math.floor(Math.random() * 6) + 1;
 var data = "";
 var pesoContenedorMax = 0;
 var pesoContenedorMin = 0;
@@ -44,7 +44,8 @@ function getData() {
   data = serial.readLine();  // lee los datos desde el puerto serial
   trim(data);                    // elimina los espacios en blanco al principio y final de los datos, si los hay
   if (!data) return;             // si los datos leídos están vacíos no hace nada
-  console.log(data);             // muestra los datos leídos 
+  console.log(data); 
+  initPlayer()            // muestra los datos leídos 
 }
 
 
@@ -89,27 +90,6 @@ function puntajes() {
   element.classList.remove("activate");
   menu.innerHTML = "<div id='circle-content' class='o-circle-content'> <div id='circle' class='o-circle'> <p class='o-text-circle'>" + points + "/5</p></div></div>";
 
-}
-
-
-document.onkeydown = function () {
-  var tecla2 = String.fromCharCode(event.keyCode);
-
-  if (tecla2 === 'A') {
-    video.currentTime = 73;//tunel bueno
-    player.videoPlaying = 4;
-  }
-  if (tecla2 === 'B') {
-    video.currentTime = 102;
-    player.videoPlaying = -3;
-
-  }
-
-  if (tecla2 === 'C') {
-    video.currentTime = 102;
-    player.videoPlaying = -3;
-
-  }
 }
 
 
@@ -199,7 +179,7 @@ function initPlayer() {
 
 
         //---------------------------------------------------- Aqui va sensor RFID----------------------------------------------------------
-        console.log("dsadasdsdasdasdadasd " + data);
+
         if (number === parseInt(data)) {
           video.currentTime = 24;
           player.videoPlaying = 2;
@@ -249,13 +229,27 @@ function initPlayer() {
           }
 
           if (number == 2) {
-            pesoContenedorMax = 14385;
-            pesoContenedorMin = 13357;
+            pesoContenedorMax = 26030;
+            pesoContenedorMin = 25687;
           }
 
           if (number == 3) {
             pesoContenedorMax = 30825;
             pesoContenedorMin = 29797;
+          }
+
+          if (number == 4) {
+            pesoContenedorMax = 30825;
+            pesoContenedorMin = 29797;
+          }
+
+          if (number == 5) {
+            pesoContenedorMax = 20500;
+            pesoContenedorMin = 17500;
+          }
+          if (number == 6) {
+            pesoContenedorMax = 20500;
+            pesoContenedorMin = 17250;
           }
 
           btn_continuar.onclick = function () {
@@ -374,20 +368,20 @@ function initPlayer() {
         video.currentTime = 64;
 
         if (number == 1) {
-          if (data == "A") {
+          if (data == 'a') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
             data = "";
           }
 
-          if (data === 'S') {
+          if (data === 's') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
 
           }
 
-          if (data === 'D') {
+          if (data === 'd') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
@@ -396,20 +390,20 @@ function initPlayer() {
         }
 
         if (number == 2) {
-          if (data == "D") {
+          if (data == 'd') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
             data = "";
           }
 
-          if (data === 'S') {
+          if (data === 's') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
 
           }
 
-          if (data === 'A') {
+          if (data === 'a') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
@@ -418,20 +412,86 @@ function initPlayer() {
         }
 
         if (number == 3) {
-          if (data == "S") {
+          if (data == 's') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
             data = "";
           }
 
-          if (data === 'D') {
+          if (data === 'd') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
 
           }
 
-          if (data === 'A') {
+          if (data === 'a') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 4) {
+          if (data == 's') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'a') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 5) {
+          if (data == 's') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'a') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 6) {
+          if (data == 's') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'a') {
             video.currentTime = 102;
             player.videoPlaying = -3;
             data = "";
