@@ -1,6 +1,6 @@
 //Declaracion SerialPort
 var serial;
-var port = 'COM3'; // variable que indica el puerto serial utilizado por el Arduino
+var port = 'COM5'; // variable que indica el puerto serial utilizado por el Arduino
 
 //----------
 
@@ -10,7 +10,8 @@ audio.volume = 0.2;
 var contador = 0;
 var progres = 0;
 var tempslider = 0;
-
+var points=0;
+var number = Math.floor(Math.random() * 3) + 1;
 var data;
 
 function setup() {
@@ -84,9 +85,30 @@ function puntajes() {
   menu.style.display = "block";
   puntaje.className += "activate";
   element.classList.remove("activate");
-  menu.innerHTML = "<div id='circle-content' class='o-circle-content'> <div id='circle' class='o-circle'> <p class='o-text-circle'>" + 1 + "/5</p></div></div>";
+  menu.innerHTML = "<div id='circle-content' class='o-circle-content'> <div id='circle' class='o-circle'> <p class='o-text-circle'>" + points + "/5</p></div></div>";
 
 }
+
+
+          document.onkeydown = function () {
+            var tecla2 = String.fromCharCode(event.keyCode);
+
+            if (tecla2 === 'A') {
+              video.currentTime = 73;//tunel bueno
+              player.videoPlaying = 4;
+            }
+            if (tecla2 === 'B') {
+              video.currentTime = 102;
+              player.videoPlaying = -3;
+              
+            }
+
+            if (tecla2 === 'C') {
+              video.currentTime = 102;
+              player.videoPlaying = -3;
+              
+            }
+          }
 
 
 //---------------------------------------------Contenedores---------------------------------------------------
@@ -132,6 +154,14 @@ var player = {
 };
 
 function initPlayer() {
+  
+ //---------------------------------------Selección aleatoria del video
+    var selection=document.getElementById("myvideo");
+    console.log(number);
+
+    selection.innerHTML="<source src='resources/images/video"+number+".mp4' type='video/mp4'>"; 
+    
+  
   "use strict";
   video = document.querySelector("video");
   console.log(video);
@@ -167,13 +197,12 @@ function initPlayer() {
 
 
         //---------------------------------------------------- Aqui va sensor RFID----------------------------------------------------------
-        document.onkeydown = function () {
-          var tecla2 = String.fromCharCode(event.keyCode);
-          if (tecla2 === 'E') {
+   console.log("dsadasdsdasdasdadasd "+data);
+          if (number===parseInt(data)) {
             video.currentTime = 24;
             player.videoPlaying = 2;
           }
-        }
+        
       }
     }
 
