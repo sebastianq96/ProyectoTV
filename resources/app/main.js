@@ -11,8 +11,10 @@ var contador = 0;
 var progres = 0;
 var tempslider = 0;
 var points = 0;
-var number = Math.floor(Math.random() * 3) + 1;
-var data;
+var number = Math.floor(Math.random() * 6) + 1;
+var data = "";
+var pesoContenedorMax = 0;
+var pesoContenedorMin = 0;
 
 function setup() {
   // Crea un objeto del tipo SerialPort
@@ -89,26 +91,6 @@ function puntajes() {
 
 }
 
-
-document.onkeydown = function () {
-  var tecla2 = String.fromCharCode(event.keyCode);
-
-  if (tecla2 === 'A') {
-    video.currentTime = 73;//tunel bueno
-    player.videoPlaying = 4;
-  }
-  if (tecla2 === 'B') {
-    video.currentTime = 102;
-    player.videoPlaying = -3;
-
-  }
-
-  if (tecla2 === 'C') {
-    video.currentTime = 102;
-    player.videoPlaying = -3;
-
-  }
-}
 
 //---------------------------------------------Contenedores---------------------------------------------------
 function contenedor() {
@@ -233,12 +215,38 @@ function initPlayer() {
           btn_continuar.style.animation = "fadeIn 2s;";
           bar.style.animation = "fadeIn 2s;";
           slider.style.animation = "fadeIn 2s;";
+          if (number == 1) {
+            pesoContenedorMax = 27400;
+            pesoContenedorMin = 26000;
+          }
+
+          if (number == 2) {
+            pesoContenedorMax = 26030;
+            pesoContenedorMin = 25687;
+          }
+
+          if (number == 3) {
+            pesoContenedorMax = 30825;
+            pesoContenedorMin = 29797;
+          }
+
+          if (number == 4) {
+            pesoContenedorMax = 30825;
+            pesoContenedorMin = 29797;
+          }
+
+          if (number == 5) {
+            pesoContenedorMax = 20500;
+            pesoContenedorMin = 17500;
+          }
+          if (number == 6) {
+            pesoContenedorMax = 20500;
+            pesoContenedorMin = 17250;
+          }
 
           btn_continuar.onclick = function () {
-            console.log("continua");
-          //reefer
-          if(number = 1){
-            if (peso >= 17300 && peso <= 25900) {
+
+            if (peso >= pesoContenedorMin && peso <= pesoContenedorMax) {
 
               video.currentTime = 42;
               player.videoPlaying = 3;
@@ -246,59 +254,22 @@ function initPlayer() {
               bar.style.display = "none";
               slider.style.display = "none";
               btn_continuar.style.display = "none";
+              btnSi.style.display = "none";
+              modal.style.display = "none";
+              modal2.style.display = "none";
+              btnSi.style.display = "none";
 
             }
-            if (peso < 17300) {
+
+            if (peso < pesoContenedorMin) {
               modal.style.display = "block";
               //mensaje.textContent  = "Estas despediciando espacio";
               btnSi.style.display = "block";
               bar.style.display = "none";
               slider.style.display = "none";
               btn_continuar.style.display = "none";
-
-              btnSi.onclick = function () {
-                //mensaje.textContent  = "se elimino correctamente";
-                btnSi.style.display = "none";
-                modal.style.display = "none";
-
-                bar.style.display = "block";
-                slider.style.display = "block";
-                btn_continuar.style.display = "block";
-                btn_continuar.style.animation = "fadeIn 2s;";
-                bar.style.animation = "fadeIn 2s;";
-                slider.style.animation = "fadeIn 2s;";
-              }
-
-              // When the user clicks on <span> (x), close the modal
-              span.onclick = function () {
-                //mensaje.textContent  = "se elimino correctamente";
-                btnSi.style.display = "none";
-                modal.style.display = "none";
-
-                bar.style.display = "block";
-                slider.style.display = "block";
-                btn_continuar.style.display = "block";
-                btn_continuar.style.animation = "fadeIn 2s;";
-                bar.style.animation = "fadeIn 2s;";
-                slider.style.animation = "fadeIn 2s;";
-              }
-
-              // When the user clicks anywhere outside of the modal, close it
-              window.onclick = function (event) {
-                if (event.target == modal) {
-                  btnSi.style.display = "none";
-                  modal.style.display = "none";
-
-                  bar.style.display = "block";
-                  slider.style.display = "block";
-                  btn_continuar.style.display = "block";
-                  btn_continuar.style.animation = "fadeIn 2s;";
-                  bar.style.animation = "fadeIn 2s;";
-                  slider.style.animation = "fadeIn 2s;";
-                }
-              }
             }
-            if (peso > 25900) {
+            if (peso > pesoContenedorMax) {
               modal2.style.display = "block";
               //mensaje.textContent  = "Estas despediciando espacio";
               btnSi.style.display = "block";
@@ -306,10 +277,40 @@ function initPlayer() {
               slider.style.display = "none";
               btn_continuar.style.display = "none";
 
-              btnSi2.onclick = function () {
-                //mensaje.textContent  = "se elimino correctamente";
-                btnSi2.style.display = "none";
-                modal2.style.display = "none";
+            }
+
+            btnSi.onclick = function () {
+              //mensaje.textContent  = "se elimino correctamente";
+              btnSi.style.display = "none";
+              modal.style.display = "none";
+
+              bar.style.display = "block";
+              slider.style.display = "block";
+              btn_continuar.style.display = "block";
+              btn_continuar.style.animation = "fadeIn 2s;";
+              bar.style.animation = "fadeIn 2s;";
+              slider.style.animation = "fadeIn 2s;";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+              //mensaje.textContent  = "se elimino correctamente";
+              btnSi.style.display = "none";
+              modal.style.display = "none";
+
+              bar.style.display = "block";
+              slider.style.display = "block";
+              btn_continuar.style.display = "block";
+              btn_continuar.style.animation = "fadeIn 2s;";
+              bar.style.animation = "fadeIn 2s;";
+              slider.style.animation = "fadeIn 2s;";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+              if (event.target == modal) {
+                btnSi.style.display = "none";
+                modal.style.display = "none";
 
                 bar.style.display = "block";
                 slider.style.display = "block";
@@ -317,35 +318,6 @@ function initPlayer() {
                 btn_continuar.style.animation = "fadeIn 2s;";
                 bar.style.animation = "fadeIn 2s;";
                 slider.style.animation = "fadeIn 2s;";
-              }
-
-              // When the user clicks on <span> (x), close the modal
-              span.onclick = function () {
-                //mensaje.textContent  = "se elimino correctamente";
-                btnSi2.style.display = "none";
-                modal2.style.display = "none";
-
-                bar.style.display = "block";
-                slider.style.display = "block";
-                btn_continuar.style.display = "block";
-                btn_continuar.style.animation = "fadeIn 2s;";
-                bar.style.animation = "fadeIn 2s;";
-                slider.style.animation = "fadeIn 2s;";
-              }
-
-              // When the user clicks anywhere outside of the modal, close it
-              window.onclick = function (event) {
-                if (event.target == modal) {
-                  btnSi.style.display = "none";
-                  modal2.style.display = "none";
-
-                  bar.style.display = "block";
-                  slider.style.display = "block";
-                  btn_continuar.style.display = "block";
-                  btn_continuar.style.animation = "fadeIn 2s;";
-                  bar.style.animation = "fadeIn 2s;";
-                  slider.style.animation = "fadeIn 2s;";
-                }
               }
             }
           };
@@ -383,29 +355,143 @@ function initPlayer() {
     //--------------------------------------------------Ultima interacción---------------------------------------------------------
 
     if (parseInt(player.currentTime) >= 71) {
-
+      var marginvideo=document.getElementById("video");
+      marginvideo.style.marginTop="-9em";
       if (player.videoPlaying === 3) {
         video.currentTime = 64;
 
-        document.onkeydown = function () {
-          var tecla2 = String.fromCharCode(event.keyCode);
-
-          if (tecla2 === 'A') {
+        if (number == 1) {
+          if (data == 'a') {
             video.currentTime = 73;//tunel bueno
             player.videoPlaying = 4;
+            data = "";
           }
-          if (tecla2 === 'B') {
+
+          if (data === 's') {
             video.currentTime = 102;
             player.videoPlaying = -3;
+            data = "";
 
           }
 
-          if (tecla2 === 'C') {
+          if (data === 'd') {
             video.currentTime = 102;
             player.videoPlaying = -3;
+            data = "";
 
           }
         }
+
+        if (number == 2) {
+          if (data == 'a') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 's') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 3) {
+          if (data == 's') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'a') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 4) {
+          if (data == 's') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 'a') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 5) {
+          if (data == 'a') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 's') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
+        if (number == 6) {
+          if (data == 'a') {
+            video.currentTime = 73;//tunel bueno
+            player.videoPlaying = 4;
+            data = "";
+          }
+
+          if (data === 'd') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+
+          if (data === 's') {
+            video.currentTime = 102;
+            player.videoPlaying = -3;
+            data = "";
+
+          }
+        }
+
       }
     }
 
@@ -420,4 +506,4 @@ function initPlayer() {
   }
 }
 
-}
+
